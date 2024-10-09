@@ -14,7 +14,7 @@ This project consists of two bots: one for Telegram and one for Discord. The bot
 
 1. Clone the repository:
   ```bash
-  git clone https://github.com/yourusername/BetweenTgDs.git
+  git clone https://github.com/sosadly/BetweenTgDs.git
   cd BetweenTgDs
   ```
 2. Install the required dependencies:
@@ -57,7 +57,7 @@ This project consists of two bots: one for Telegram and one for Discord. The bot
 
 1. Клонуйте репозиторій:
    ```bash
-   git clone https://github.com/yourusername/BetweenTgDs.git
+   git clone https://github.com/sosadly/BetweenTgDs.git
    cd BetweenTgDs
    ```
 2. Встановіть необхідні залежності:
