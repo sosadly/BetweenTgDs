@@ -8,7 +8,7 @@ This project consists of two bots: one for Telegram and one for Discord. The bot
 - Node.js (v14 or higher)
 - npm (v6 or higher)
 - Telegram Bot API key
-- Discord Webhook URL
+- Discord Bot API key
 
 ### Steps to Install
 
