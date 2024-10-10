@@ -51,7 +51,7 @@ This project consists of two bots: one for Telegram and one for Discord. The bot
 - Node.js (v14 або вище)
 - npm (v6 або вище)
 - API ключ бота Telegram
-- URL вебхука Discord
+- API ключ бота Discord
 
 ### Кроки для встановлення
 
