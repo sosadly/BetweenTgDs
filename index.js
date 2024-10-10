@@ -131,7 +131,7 @@ telegramBot.on(['text', 'voice', 'audio', 'document'], async (ctx) => {
         }
 
         if (message.text) {
-            const content = `[Telegram] ${message.from.first_name} ${message.from.last_name || ''}: ${message.text}`;
+            const content = `[TG] ${message.from.first_name} ${message.from.last_name || ''}: ${message.text}`;
             logger.info(`Forwarding to Discord: ${content}`);
             await discordChannel.send(content);
         } else if (message.voice || message.audio) {
@@ -173,7 +173,7 @@ telegramBot.on(['text', 'voice', 'audio', 'document'], async (ctx) => {
             const MAX_DISCORD_FILE_SIZE = 8 * 1024 * 1024; // 8MB
             if (stats.size > MAX_DISCORD_FILE_SIZE) {
                 logger.warn(`MP3 file size (${stats.size} bytes) exceeds Discord's limit.`);
-                await discordChannel.send(`[Telegram] ${message.from.first_name} ${message.from.last_name || ''} (Voice): File size exceeds Discord's limit.`);
+                await discordChannel.send(`[TG] ${message.from.first_name} ${message.from.last_name || ''} (Voice): File size exceeds Discord's limit.`);
                 await fs.remove(filePath);
                 await fs.remove(mp3Path);
                 return;
@@ -182,7 +182,7 @@ telegramBot.on(['text', 'voice', 'audio', 'document'], async (ctx) => {
             try {
                 const attachment = new AttachmentBuilder(mp3Path).setName(path.basename(mp3Path));
                 await discordChannel.send({
-                    content: `[Telegram] ${message.from.first_name} ${message.from.last_name || ''} (Voice):`,
+                    content: `[TG] ${message.from.first_name} ${message.from.last_name || ''} (Voice):`,
                     files: [attachment],
                 });
                 logger.info('Voice message sent to Discord.');
@@ -215,7 +215,7 @@ telegramBot.on(['text', 'voice', 'audio', 'document'], async (ctx) => {
             const MAX_DISCORD_FILE_SIZE = 8 * 1024 * 1024; // 8MB
             if (stats.size > MAX_DISCORD_FILE_SIZE) {
                 logger.warn(`Document file size (${stats.size} bytes) exceeds Discord's limit.`);
-                await discordChannel.send(`[Telegram] ${message.from.first_name} ${message.from.last_name || ''} (File): File size exceeds Discord's limit.`);
+                await discordChannel.send(`[TG] ${message.from.first_name} ${message.from.last_name || ''} (File): File size exceeds Discord's limit.`);
                 await fs.remove(filePath);
                 return;
             }
@@ -223,7 +223,7 @@ telegramBot.on(['text', 'voice', 'audio', 'document'], async (ctx) => {
             try {
                 const attachment = new AttachmentBuilder(filePath).setName(document.file_name);
                 await discordChannel.send({
-                    content: `[Telegram] ${message.from.first_name} ${message.from.last_name || ''} (File):`,
+                    content: `[TG] ${message.from.first_name} ${message.from.last_name || ''} (File):`,
                     files: [attachment],
                 });
                 logger.info('Document sent to Discord.');
@@ -249,7 +249,7 @@ discordClient.on('messageCreate', async (message) => {
         if (message.channel.id !== DISCORD_CHANNEL_ID || message.author.bot) return;
 
         if (message.content) {
-            const text = `[Discord] ${message.author.username}: ${message.content}`;
+            const text = `[DS] ${message.author.username}: ${message.content}`;
             logger.info(`Forwarding to Telegram: ${text}`);
 
             try {
@@ -296,7 +296,7 @@ discordClient.on('messageCreate', async (message) => {
                                     filename: attachment.name,
                                 },
                                 {
-                                    caption: `[Discord] ${message.author.username} (File):`,
+                                    caption: `[DS] ${message.author.username} (File):`,
                                 }
                             );
                             logger.info('Audio file sent as document to Telegram.');
@@ -319,7 +319,7 @@ discordClient.on('messageCreate', async (message) => {
                                 source: fs.createReadStream(oggPath),
                             },
                             {
-                                caption: `[Discord] ${message.author.username} (Voice):`,
+                                caption: `[DS] ${message.author.username} (Voice):`,
                             }
                         );
                         logger.info('Voice message sent to Telegram.');
@@ -344,7 +344,7 @@ discordClient.on('messageCreate', async (message) => {
                                 filename: attachment.name,
                             },
                             {
-                                caption: `[Discord] ${message.author.username} (File):`,
+                                caption: `[DS] ${message.author.username} (File):`,
                             }
                         );
                         logger.info('File sent to Telegram.');
