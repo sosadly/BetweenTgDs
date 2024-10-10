@@ -7,6 +7,7 @@ This project consists of two bots: one for Telegram and one for Discord. The bot
 ### Requirements
 - Node.js (v14 or higher)
 - npm (v6 or higher)
+- Ffmpeg(latest)
 - Telegram Bot API key
 - Discord Bot API key
 
